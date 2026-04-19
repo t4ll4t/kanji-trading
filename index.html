@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Kanji General Trading — Precious metals bullion, market making, and private advisory. DMCC-authorized dealer based in Dubai." />
+<title>Kanji General Trading — Precious Metals & Private Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #08080A;
+    --bg-elev: #0E0E12;
+    --bg-card: #101015;
+    --border: rgba(201, 168, 76, 0.14);
+    --border-strong: rgba(201, 168, 76, 0.32);
+    --gold: #C9A84C;
+    --gold-soft: #D9BE6E;
+    --gold-deep: #8A7231;
+    --ink: #EDEBE4;
+    --ink-dim: #A29E93;
+    --ink-mute: #6B6860;
+    --danger: #C96E4C;
+    --success: #7CA366;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --radius: 2px;
+    --max: 1280px;
+    --nav-h: 76px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  ul { list-style: none; }
+
+  ::selection { background: var(--gold); color: #000; }
+
+  .container {
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    z-index: 100;
+    background: rgba(8, 8, 10, 0.72);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .nav.scrolled {
+    background: rgba(8, 8, 10, 0.92);
+    border-bottom-color: var(--border);
+  }
+  .nav-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .mono-k {
+    width: 40px; height: 40px;
+    border: 1px solid var(--border-strong);
+    display: grid; place-items: center;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    position: relative;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .mono-k::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(201, 168, 76, 0.08);
+    pointer-events: none;
+  }
+  .brand:hover .mono-k { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .brand-name {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .brand-name span { color: var(--ink-dim); font-weight: 400; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .nav-links a {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    transition: color 0.2s ease;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 24px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateY(101%);
+    transition: transform 0.35s cubic-bezier(.77,0,.18,1);
+    z-index: -1;
+  }
+  .btn:hover {
+    color: #08080A;
+    box-shadow: 0 0 32px -6px rgba(201, 168, 76, 0.55);
+  }
+  .btn:hover::before { transform: translateY(0); }
+
+  .btn--primary {
+    background: var(--gold);
+    color: #08080A;
+  }
+  .btn--primary::before { background: var(--gold-soft); }
+  .btn--primary:hover { color: #08080A; border-color: var(--gold-soft); }
+
+  .btn--ghost {
+    border-color: var(--border-strong);
+    color: var(--ink);
+  }
+  .btn--ghost::before { background: var(--ink); }
+  .btn--ghost:hover { color: #08080A; border-color: var(--ink); }
+
+  .btn svg { width: 14px; height: 14px; transition: transform 0.25s ease; }
+  .btn:hover svg { transform: translateX(3px); }
+
+  .nav .btn { padding: 11px 20px; font-size: 11px; }
+
+  .hamburger {
+    display: none;
+    width: 36px; height: 36px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    width: 16px; height: 1px;
+    background: var(--gold);
+    position: relative;
+  }
+  .hamburger span::before, .hamburger span::after {
+    content: '';
+    position: absolute;
+    left: 0; width: 16px; height: 1px;
+    background: var(--gold);
+    transition: transform 0.3s ease;
+  }
+  .hamburger span::before { top: -5px; }
+  .hamburger span::after { top: 5px; }
+  .hamburger.active span { background: transparent; }
+  .hamburger.active span::before { transform: rotate(45deg) translate(3px, 4px); }
+  .hamburger.active span::after { transform: rotate(-45deg) translate(3px, -4px); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding: calc(var(--nav-h) + 40px) 0 80px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(115deg, transparent 49.7%, rgba(201,168,76,0.08) 49.8%, rgba(201,168,76,0.08) 50%, transparent 50.1%),
+      linear-gradient(65deg, transparent 49.7%, rgba(201,168,76,0.05) 49.8%, rgba(201,168,76,0.05) 50%, transparent 50.1%);
+    background-size: 74px 74px, 98px 98px;
+    opacity: 0.6;
+    mask-image: radial-gradient(ellipse at 30% 60%, #000 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 30% 60%, #000 20%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 60vw; height: 60vw;
+    max-width: 900px; max-height: 900px;
+    background: radial-gradient(circle at center, rgba(201,168,76,0.18) 0%, rgba(201,168,76,0.08) 28%, transparent 58%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-glow--secondary {
+    top: auto; bottom: -30%; left: -20%;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle at center, rgba(201,168,76,0.08) 0%, transparent 55%);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 34px; height: 1px;
+    background: var(--gold);
+  }
+
+  h1.hero-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(44px, 6.2vw, 82px);
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    max-width: 540px;
+    margin-bottom: 44px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .hero-meta span { color: var(--gold); margin-right: 8px; }
+
+  /* Price widget */
+  .price-widget {
+    background: linear-gradient(180deg, rgba(16,16,21,0.9), rgba(10,10,14,0.95));
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+  .price-widget::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+  }
+  .price-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .price-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 10px var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .price-rows { padding: 8px 0; }
+  .price-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.06);
+    transition: background 0.2s ease;
+  }
+  .price-row:last-child { border-bottom: none; }
+  .price-row:hover { background: rgba(201,168,76,0.03); }
+  .ticker {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+  }
+  .metal-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .price-val {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .price-delta {
+    font-family: var(--mono);
+    font-size: 11px;
+    min-width: 56px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .price-delta.up { color: var(--success); }
+  .price-delta.down { color: var(--danger); }
+  .price-footer {
+    padding: 12px 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- SECTION COMMON ---------- */
+  section { position: relative; }
+  .section {
+    padding: 120px 0;
+  }
+  .section-head {
+    max-width: 760px;
+    margin-bottom: 72px;
+  }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .section-label::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+  h2.section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 4.6vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--ink-dim);
+    line-height: 1.7;
+    max-width: 620px;
+  }
+
+  /* ---------- SERVICES ---------- */
+  #services { background: linear-gradient(180deg, var(--bg) 0%, #0A0A0D 100%); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .service-card {
+    position: relative;
+    padding: 48px 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    transition: transform 0.4s cubic-bezier(.2,.7,.2,1), border-color 0.3s ease, box-shadow 0.4s ease, background 0.3s ease;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s cubic-bezier(.2,.7,.2,1);
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201,168,76,0.25);
+    background: #121218;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.8);
+  }
+  .service-card:hover::before { transform: scaleY(1); }
+
+  .service-icon {
+    width: 56px; height: 56px;
+    border: 1px solid var(--border-strong);
+    display: grid; place-items: center;
+    color: var(--gold);
+    margin-bottom: 32px;
+    position: relative;
+    transition: border-color 0.3s ease;
+  }
+  .service-icon::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .service-card:hover .service-icon { border-color: var(--gold); }
+  .service-icon svg { width: 24px; height: 24px; }
+
+  .service-marker {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  h3.service-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .service-desc {
+    font-size: 14px;
+    color: var(--ink-dim);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .service-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 9px 0;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+  .service-list li + li { border-top: 1px solid rgba(201,168,76,0.06); }
+  .service-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 9px;
+  }
+
+  /* ---------- METRICS ---------- */
+  .metrics {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: #0A0A0D;
+    position: relative;
+    overflow: hidden;
+  }
+  .metrics::before, .metrics::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 30%;
+    pointer-events: none;
+  }
+  .metrics::before {
+    left: 0;
+    background: radial-gradient(ellipse at left, rgba(201,168,76,0.08), transparent 70%);
+  }
+  .metrics::after {
+    right: 0;
+    background: radial-gradient(ellipse at right, rgba(201,168,76,0.08), transparent 70%);
+  }
+  .metrics-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .metric {
+    padding: 20px 32px;
+    text-align: left;
+    border-right: 1px solid var(--border);
+  }
+  .metric:last-child { border-right: none; }
+  .metric-num {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(42px, 4.5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .metric-num .unit {
+    font-size: 0.42em;
+    color: var(--gold-deep);
+    font-style: italic;
+  }
+  .metric-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* ---------- ABOUT ---------- */
+  #about {
+    padding: 140px 0;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .pullquote {
+    position: sticky;
+    top: calc(var(--nav-h) + 40px);
+    padding-left: 28px;
+    border-left: 1px solid var(--gold);
+  }
+  .pullquote-mark {
+    font-family: var(--serif);
+    font-size: 80px;
+    line-height: 0.6;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-bottom: 24px;
+  }
+  .pullquote-text {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(26px, 2.4vw, 36px);
+    line-height: 1.3;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    margin-bottom: 24px;
+  }
+  .pullquote-text em {
+    color: var(--gold);
+  }
+  .pullquote-attr {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .about-body p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--ink-dim);
+    margin-bottom: 22px;
+  }
+  .about-body p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-size: 58px;
+    font-weight: 500;
+    float: left;
+    line-height: 0.85;
+    padding: 6px 14px 0 0;
+    color: var(--gold);
+  }
+  .about-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .about-footer {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .about-footer .item {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .about-footer .item span {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: 0;
+    color: var(--gold);
+    text-transform: none;
+    margin-top: 6px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  #contact {
+    padding: 140px 0;
+    background: linear-gradient(180deg, #0A0A0D 0%, var(--bg) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  #contact::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 60%);
+    pointer-events: none;
+  }
+  .contact-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .contact-left h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(40px, 4.6vw, 68px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    margin-bottom: 28px;
+  }
+  .contact-left h2 em { font-style: italic; color: var(--gold); }
+  .contact-left p {
+    font-size: 16px;
+    color: var(--ink-dim);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 420px;
+  }
+  .contact-cards {
+    display: grid;
+    gap: 16px;
+  }
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .contact-card:hover {
+    border-color: var(--border-strong);
+    transform: translateX(6px);
+    background: #121218;
+  }
+  .contact-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--border-strong);
+    display: grid; place-items: center;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 20px; height: 20px; }
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .contact-value {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .contact-value.mono {
+    font-family: var(--mono);
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 60px 0 40px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .footer-left .mono-k { width: 36px; height: 36px; font-size: 18px; }
+  .footer-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .footer-meta div + div { margin-top: 4px; }
+  .footer-meta strong { color: var(--gold); font-weight: 500; }
+  .footer-right {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    text-align: right;
+  }
+  .footer-right strong { color: var(--ink-dim); font-weight: 500; }
+
+  /* ---------- SCROLL ANIMATIONS ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(.2,.6,.2,1), transform 0.9s cubic-bezier(.2,.6,.2,1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal.delay-1 { transition-delay: 0.08s; }
+  .reveal.delay-2 { transition-delay: 0.16s; }
+  .reveal.delay-3 { transition-delay: 0.24s; }
+  .reveal.delay-4 { transition-delay: 0.32s; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+    .about-grid { grid-template-columns: 1fr; gap: 50px; }
+    .pullquote { position: static; }
+    .contact-grid { grid-template-columns: 1fr; gap: 56px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .metric { border-right: none; padding: 28px 24px; }
+    .metric:nth-child(odd) { border-right: 1px solid var(--border); }
+    .metric:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 22px; }
+    .section { padding: 80px 0; }
+    #about, #contact { padding: 90px 0; }
+
+    .nav-links, .nav .btn { display: none; }
+    .hamburger { display: inline-flex; }
+
+    .mobile-menu {
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(8, 8, 10, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+      transform: translateY(-120%);
+      transition: transform 0.4s cubic-bezier(.2,.7,.2,1);
+      z-index: 99;
+    }
+    .mobile-menu.open { transform: translateY(0); }
+    .mobile-menu a {
+      display: block;
+      padding: 16px 0;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-of-type { border-bottom: none; }
+    .mobile-menu .btn { margin-top: 18px; width: 100%; justify-content: center; }
+
+    .brand-name { font-size: 10.5px; letter-spacing: 0.24em; }
+    .brand-name span { display: none; }
+
+    .hero { padding-top: calc(var(--nav-h) + 24px); min-height: auto; }
+    .hero-meta { flex-direction: column; gap: 10px; }
+
+    .services-grid { grid-template-columns: 1fr; gap: 18px; }
+    .service-card { padding: 38px 28px; }
+
+    .about-body p:first-of-type::first-letter { font-size: 46px; }
+    .about-footer { gap: 28px; }
+
+    .contact-card { padding: 22px 24px; gap: 18px; }
+    .contact-value { font-size: 17px; }
+    .contact-value.mono { font-size: 13px; }
+
+    .footer-inner { flex-direction: column; align-items: flex-start; text-align: left; }
+    .footer-right { text-align: left; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 0 18px; }
+    .brand-name { font-size: 9.5px; }
+    .mono-k { width: 34px; height: 34px; font-size: 18px; }
+
+    h1.hero-title { font-size: 40px; }
+    .hero-sub { font-size: 15px; }
+    .hero-ctas { flex-direction: column; }
+    .hero-ctas .btn { width: 100%; justify-content: center; }
+
+    .price-row { grid-template-columns: 56px 1fr auto; padding: 12px 16px; gap: 10px; }
+    .price-delta { display: none; }
+    .price-header, .price-footer { padding: 14px 16px; }
+    .metal-name { font-size: 15px; }
+
+    .metrics-grid { grid-template-columns: 1fr; }
+    .metric { border-right: none !important; border-bottom: 1px solid var(--border); }
+    .metric:last-child { border-bottom: none; }
+
+    h2.section-title, .contact-left h2 { font-size: 32px; }
+    .section-head { margin-bottom: 48px; }
+
+    .pullquote-text { font-size: 22px; }
+    .pullquote-mark { font-size: 60px; }
+
+    .service-icon { width: 48px; height: 48px; margin-bottom: 24px; }
+    h3.service-title { font-size: 26px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand" aria-label="Kanji General Trading">
+      <div class="mono-k" aria-hidden="true">K</div>
+      <div class="brand-name">Kanji <span>General Trading</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn--primary">Request Access
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false"><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="btn btn--primary">Request Access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow--secondary" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow reveal">DMCC-Authorized Precious Metals Dealer</div>
+      <h1 class="hero-title reveal delay-1">
+        Quiet capital. <em>Considered</em><br />
+        flow in precious metals.
+      </h1>
+      <p class="hero-sub reveal delay-2">
+        Kanji General Trading operates a discreet bullion desk and private advisory practice for institutions, family offices, and high-conviction allocators across the Gulf and beyond.
+      </p>
+      <div class="hero-ctas reveal delay-3">
+        <a href="#contact" class="btn btn--primary">Request Access
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#services" class="btn btn--ghost">View Services</a>
+      </div>
+      <div class="hero-meta reveal delay-4">
+        <div><span>&#9670;</span>Dubai &middot; DMCC</div>
+        <div><span>&#9670;</span>Est. 2007</div>
+        <div><span>&#9670;</span>LBMA Good Delivery</div>
+      </div>
+    </div>
+
+    <aside class="price-widget reveal delay-2" aria-label="Reference spot prices">
+      <div class="price-header">
+        <span class="price-title">Spot Reference &middot; USD/oz</span>
+        <span class="price-live"><span class="live-dot"></span>Live</span>
+      </div>
+      <div class="price-rows">
+        <div class="price-row">
+          <span class="ticker">XAU</span>
+          <span class="metal-name">Gold</span>
+          <span class="price-val" data-price="2418.74">2,418.74</span>
+          <span class="price-delta up">+0.62%</span>
+        </div>
+        <div class="price-row">
+          <span class="ticker">XAG</span>
+          <span class="metal-name">Silver</span>
+          <span class="price-val" data-price="31.28">31.28</span>
+          <span class="price-delta up">+1.14%</span>
+        </div>
+        <div class="price-row">
+          <span class="ticker">XPT</span>
+          <span class="metal-name">Platinum</span>
+          <span class="price-val" data-price="1047.60">1,047.60</span>
+          <span class="price-delta down">&minus;0.31%</span>
+        </div>
+        <div class="price-row">
+          <span class="ticker">XPD</span>
+          <span class="metal-name">Palladium</span>
+          <span class="price-val" data-price="994.10">994.10</span>
+          <span class="price-delta up">+0.22%</span>
+        </div>
+      </div>
+      <div class="price-footer">
+        <span>Indicative &middot; Not a quote</span>
+        <span id="priceTime">14:42 GST</span>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Three practices. <em>One standard.</em></h2>
+      <p class="section-sub">
+        We keep a narrow mandate and a deep bench. Every engagement is relationship-led, documented to institutional standard, and settled with deliberate care.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Bullion -->
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M3 9l2-4h14l2 4M3 9h18M3 9v10a1 1 0 001 1h16a1 1 0 001-1V9"/>
+            <path d="M9 13h6M8 17h8"/>
+          </svg>
+        </div>
+        <div class="service-marker">Au &middot; 01</div>
+        <h3 class="service-title">Bullion</h3>
+        <p class="service-desc">
+          Physical gold, silver and platinum group metals sourced from LBMA-accredited refineries and settled through accredited vaulting partners.
+        </p>
+        <ul class="service-list">
+          <li>Kilobars, 100oz bars &amp; sovereign coinage</li>
+          <li>Allocated &amp; segregated storage in Dubai, Zurich, Singapore</li>
+          <li>Bar-list reconciliation with full chain-of-custody</li>
+          <li>Responsible sourcing under OECD guidance</li>
+        </ul>
+      </article>
+
+      <!-- Market Making -->
+      <article class="service-card reveal delay-1">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M3 20l5-8 4 4 5-10 4 6"/>
+            <path d="M3 20h18"/>
+            <circle cx="8" cy="12" r="1.4" fill="currentColor"/>
+            <circle cx="17" cy="6" r="1.4" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="service-marker">M &middot; 02</div>
+        <h3 class="service-title">Market Making</h3>
+        <p class="service-desc">
+          Two-way pricing across precious metals with measured depth. We provide continuous liquidity to a curated counterparty list during GMT and GST hours.
+        </p>
+        <ul class="service-list">
+          <li>Spot, forward &amp; EFP pricing on XAU/XAG</li>
+          <li>Loco swaps: Dubai&ndash;London&ndash;Zurich</li>
+          <li>Deliverable structures with T+0 options</li>
+          <li>Tight spreads on sustained relationships</li>
+        </ul>
+      </article>
+
+      <!-- Advisory -->
+      <article class="service-card reveal delay-2">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="service-marker">A &middot; 03</div>
+        <h3 class="service-title">Advisory</h3>
+        <p class="service-desc">
+          Private advisory for family offices and founders considering meaningful allocations to metals. Deliberate, confidential, long-horizon.
+        </p>
+        <ul class="service-list">
+          <li>Allocation framework &amp; custody structuring</li>
+          <li>Jurisdictional review: vaulting &amp; VAT</li>
+          <li>Inheritance &amp; intergenerational planning</li>
+          <li>Quarterly portfolio review with your counsel</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric reveal">
+        <div class="metric-num">$1.4<span class="unit">B+</span></div>
+        <div class="metric-label">Annual Flow</div>
+      </div>
+      <div class="metric reveal delay-1">
+        <div class="metric-num">24/6</div>
+        <div class="metric-label">Desk Coverage</div>
+      </div>
+      <div class="metric reveal delay-2">
+        <div class="metric-num">40<span class="unit">+</span></div>
+        <div class="metric-label">Counterparties</div>
+      </div>
+      <div class="metric reveal delay-3">
+        <div class="metric-num">18<span class="unit">yr</span></div>
+        <div class="metric-label">Relationships</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <aside class="pullquote reveal">
+        <div class="pullquote-mark">&ldquo;</div>
+        <p class="pullquote-text">
+          Trust compounds quietly. We have built the desk around <em>relationships</em> that outlast any one cycle.
+        </p>
+        <div class="pullquote-attr">&mdash; Principal, Kanji General Trading</div>
+      </aside>
+
+      <div class="about-body reveal delay-1">
+        <div class="section-label">The House</div>
+        <h2 class="section-title" style="margin-bottom:32px">
+          A Dubai desk with a <em>long memory.</em>
+        </h2>
+        <p>
+          Kanji General Trading is a privately held precious metals house operating from the DMCC Free Zone in Dubai. We do one thing, carefully &mdash; source, price and settle physical metals for a short list of institutional, sovereign and private clients who value discretion and continuity over volume and velocity.
+        </p>
+        <p>
+          The firm was founded in 2007 as a settlement shop for a single family office. It has since grown into a full-service desk serving <strong>forty-plus counterparties</strong> across the Gulf, South Asia and Europe &mdash; but the operating ethos has not changed. Relationships are slow; spreads are fair; mandates are narrow; reporting is meticulous.
+        </p>
+        <p>
+          We sit intentionally outside the retail market. Our clients are introduced, documented to LBMA and DMCC standard, and onboarded with patience. If that feels slow, it is meant to.
+        </p>
+
+        <div class="about-footer">
+          <div class="item">Founded<span>2007</span></div>
+          <div class="item">Registered<span>DMCC, Dubai</span></div>
+          <div class="item">Regulated<span>DMCC DGD Cat-1</span></div>
+          <div class="item">Principals<span>Three Partners</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <div class="section-label">Get In Touch</div>
+        <h2>Let's begin a <em>conversation.</em></h2>
+        <p>
+          Introductions are by referral or application. We respond to every enquiry within one business day, in confidence, and with the care the relationship deserves.
+        </p>
+        <a href="mailto:desk@kanjitrading.ae" class="btn btn--primary">Request Access
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <div class="contact-cards">
+        <a href="mailto:desk@kanjitrading.ae" class="contact-card reveal delay-1">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="5" width="18" height="14" rx="1"/>
+              <path d="M3 7l9 6 9-6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Desk</div>
+            <div class="contact-value">desk@kanjitrading.ae</div>
+          </div>
+        </a>
+
+        <a href="tel:+97145551847" class="contact-card reveal delay-2">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Direct Line &middot; 24/6</div>
+            <div class="contact-value mono">+971 4 555 1847</div>
+          </div>
+        </a>
+
+        <div class="contact-card reveal delay-3">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 21s-7-6.5-7-12a7 7 0 1114 0c0 5.5-7 12-7 12z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-label">Office</div>
+            <div class="contact-value">Almas Tower, DMCC &middot; Dubai</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <div class="mono-k" aria-hidden="true">K</div>
+      <div class="footer-meta">
+        <div><strong>Kanji</strong> General Trading LLC</div>
+        <div>&copy; 2007&ndash;2026 &middot; All rights reserved</div>
+      </div>
+    </div>
+    <div class="footer-right">
+      <strong>Authorized</strong> &nbsp; DMCC DGD-Cat-1 &middot; Lic. No. 549812<br/>
+      Almas Tower, Jumeirah Lakes Towers, Dubai, UAE
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const setScrolled = () => nav.classList.toggle('scrolled', window.scrollY > 16);
+  setScrolled();
+  window.addEventListener('scroll', setScrolled, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const prices = document.querySelectorAll('.price-val');
+  const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const jitter = () => {
+    prices.forEach(el => {
+      const base = parseFloat(el.dataset.price);
+      const drift = (Math.random() - 0.5) * base * 0.0012;
+      el.textContent = fmt(base + drift);
+    });
+  };
+  setInterval(jitter, 3200);
+
+  const timeEl = document.getElementById('priceTime');
+  const tick = () => {
+    const now = new Date();
+    const gst = new Date(now.getTime() + (now.getTimezoneOffset() + 240) * 60000);
+    const hh = String(gst.getHours()).padStart(2, '0');
+    const mm = String(gst.getMinutes()).padStart(2, '0');
+    timeEl.textContent = hh + ':' + mm + ' GST';
+  };
+  tick();
+  setInterval(tick, 30000);
+</script>
+
+</body>
+</html>
