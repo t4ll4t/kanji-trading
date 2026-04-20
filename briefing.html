@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GC Morning Brief | April 20, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: #0a0a0c;
+    color: #e8e8ea;
+    font-size: 14px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media print {
+    body { background: white; color: #1a1a1a; }
+    .page-break { page-break-before: always; }
+    .no-print { display: none; }
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #26262c;
+    padding-bottom: 20px;
+    margin-bottom: 36px;
+  }
+  .header-left .brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: #C9A84C;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .header-left h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #ededed;
+  }
+  .header-right {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #6b6b75;
+  }
+  .header-right .date {
+    font-size: 13px;
+    color: #9a9aa2;
+    margin-bottom: 4px;
+  }
+
+  /* Section headers */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: #C9A84C;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    margin-top: 40px;
+  }
+
+  /* Edge box */
+  .edge-box {
+    background: #111114;
+    border: 1px solid #26262c;
+    border-left: 3px solid #C9A84C;
+    padding: 20px 24px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #e8e8ea;
+  }
+
+  /* Dashboard table */
+  table.dashboard {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 8px 0;
+  }
+  table.dashboard th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: #6b6b75;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #26262c;
+  }
+  table.dashboard td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #1a1a1e;
+    vertical-align: top;
+  }
+  table.dashboard tr:hover td { background: #111114; }
+  .asset {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    color: #C9A84C;
+    font-size: 12px;
+  }
+  .price {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #e8e8ea;
+  }
+  .move {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+  }
+  .move.pos { color: #7CA366; }
+  .move.neg { color: #C96E4C; }
+  .story { color: #9a9aa2; font-size: 12px; }
+  .watch { color: #6b6b75; font-size: 11px; }
+
+  /* Macro */
+  .macro {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #9a9aa2;
+    margin: 12px 0 8px;
+    line-height: 1.8;
+  }
+
+  /* Tape */
+  .tape-box {
+    background: #0d0d10;
+    border: 1px solid #1e1e28;
+    padding: 14px 18px;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .tape-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #C9A84C;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tape-text { color: #9a9aa2; }
+  .tape-text strong { color: #e8e8ea; }
+
+  /* Story */
+  .story-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #ededed;
+  }
+  .story p { margin-bottom: 14px; color: #c8c8d0; font-size: 14px; }
+  .story .sub-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #C9A84C;
+    text-transform: uppercase;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+  .confidence {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border: 1px solid;
+    border-radius: 2px;
+    margin-top: 12px;
+  }
+  .confidence.high { color: #7CA366; border-color: #7CA366; }
+  .confidence.moderate { color: #C9A84C; border-color: #C9A84C; }
+  .confidence.speculative { color: #C96E4C; border-color: #C96E4C; }
+
+  /* Thread */
+  .thread-box {
+    background: #111114;
+    border: 1px solid #1e1e28;
+    padding: 18px 22px;
+    margin: 8px 0;
+  }
+  .thread-box p { color: #c8c8d0; font-size: 14px; margin-bottom: 12px; }
+  .contradiction {
+    background: #0d0d10;
+    border-left: 3px solid #C96E4C;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #9a9aa2;
+    margin-top: 14px;
+  }
+  .contradiction strong { color: #e8e8ea; }
+
+  /* Also Moving */
+  .also-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #1a1a1e;
+  }
+  .also-item:last-child { border-bottom: none; }
+  .also-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ededed;
+    margin-bottom: 8px;
+  }
+  .also-item p { color: #9a9aa2; font-size: 13px; }
+
+  /* Radar */
+  .radar-list {
+    list-style: none;
+    font-size: 13px;
+  }
+  .radar-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #1a1a1e;
+    color: #9a9aa2;
+  }
+  .radar-list li:last-child { border-bottom: none; }
+  .radar-list strong { color: #e8e8ea; }
+
+  /* Next */
+  .next-item {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid #1a1a1e;
+    font-size: 13px;
+  }
+  .next-item:last-child { border-bottom: none; }
+  .next-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #C9A84C;
+    min-width: 140px;
+    padding-top: 2px;
+  }
+  .next-text { color: #9a9aa2; }
+
+  /* Read rec */
+  .read-rec {
+    background: #111114;
+    border: 1px solid #26262c;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: #9a9aa2;
+    margin-top: 8px;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid #1e1e28;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #4a4a55;
+  }
+
+  @media print {
+    .container { max-width: 100%; padding: 24px; }
+    body { background: white; color: black; }
+    .edge-box, .thread-box, .tape-box, .read-rec { border-color: #ccc; background: #f5f5f5; }
+    .asset { color: #996600; }
+    .header { border-bottom-color: #ccc; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="brand">GoldClaw Morning Intelligence</div>
+      <h1>Morning Brief</h1>
+    </div>
+    <div class="header-right">
+      <div class="date">Monday, April 20, 2026</div>
+      <div>V2 Format | ~2,000 words</div>
+    </div>
+  </div>
+
+  <!-- THE EDGE -->
+  <div class="section-label">The Edge</div>
+  <div class="edge-box">
+    The market is not trading today's macro risks as durable regime change — it is trading them as a temporary tax on growth while AI capex and earnings momentum stay intact. The evidence: lower oil and VIX, record-adjacent index levels, and continued strength in NVDA, META, GOOGL, and PLTR even after a war-driven inflation scare and tariff-policy shock.
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="section-label">The Dashboard</div>
+  <table class="dashboard">
+    <thead>
+      <tr>
+        <th>Asset</th>
+        <th>Price</th>
+        <th>Move</th>
+        <th>Story</th>
+        <th>Watch For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="asset">Gold</td>
+        <td class="price">$4,813.30</td>
+        <td class="move pos">+0.28%</td>
+        <td class="story">Still holding near highs as reserve and policy hedge</td>
+        <td class="watch">Whether it rises even as VIX falls, signaling structural distrust not panic</td>
+      </tr>
+      <tr>
+        <td class="asset">Silver</td>
+        <td class="price">$80.31</td>
+        <td class="move pos">+1.03%</td>
+        <td class="story">Following gold with more cyclical upside tied to industry</td>
+        <td class="watch">Whether industrial demand matters more than safe-haven demand</td>
+      </tr>
+      <tr>
+        <td class="asset">NVDA</td>
+        <td class="price">$201.68</td>
+        <td class="move pos">+6.92%</td>
+        <td class="story">AI infrastructure demand remains the market's cleanest growth story</td>
+        <td class="watch">Any hyperscaler capex hesitation or export-policy noise</td>
+      </tr>
+      <tr>
+        <td class="asset">AAPL</td>
+        <td class="price">$270.23</td>
+        <td class="move pos">+3.74%</td>
+        <td class="story">Mega-cap bid broadened beyond pure AI semis</td>
+        <td class="watch">Margin pressure from tariffs and hardware supply-chain policy</td>
+      </tr>
+      <tr>
+        <td class="asset">META</td>
+        <td class="price">$688.55</td>
+        <td class="move pos">+9.32%</td>
+        <td class="story">Ad resilience plus AI monetization optimism</td>
+        <td class="watch">Whether cost discipline survives continued AI spending</td>
+      </tr>
+      <tr>
+        <td class="asset">GOOGL</td>
+        <td class="price">$341.68</td>
+        <td class="move pos">+7.70%</td>
+        <td class="story">AI search and cloud narrative regaining momentum</td>
+        <td class="watch">Search monetization tradeoff as AI products scale</td>
+      </tr>
+      <tr>
+        <td class="asset">PLTR</td>
+        <td class="price">$146.39</td>
+        <td class="move pos">+14.31%</td>
+        <td class="story">Defense, government, and enterprise AI benefiting from geopolitical demand</td>
+        <td class="watch">Whether valuation outruns contract reality</td>
+      </tr>
+      <tr>
+        <td class="asset">ADBE</td>
+        <td class="price">$244.45</td>
+        <td class="move pos">+8.48%</td>
+        <td class="story">Software rebound with AI product optimism after deep skepticism</td>
+        <td class="watch">Proof of monetization, not just feature rollout</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="macro">
+    S&amp;P 7,126 &middot; Nasdaq 24,468 &middot; Dow 49,447 &middot; DXY 98.27 &middot; 10Y 4.25% &middot; WTI $82.59 &middot; BTC $74,495 &middot; VIX 17.48
+  </div>
+
+  <div class="tape-box">
+    <div class="tape-label">Street says</div>
+    <div class="tape-text">War risk, inflation pressure, tariff uncertainty, and fewer Fed cuts should be a headwind for risk assets.</div>
+  </div>
+  <div class="tape-box">
+    <div class="tape-label">Tape says</div>
+    <div class="tape-text">Investors believe those shocks are fading at the margin. Earnings and AI spending are overriding the macro drag right now.</div>
+  </div>
+
+  <!-- THE STORY -->
+  <div class="section-label">The Story</div>
+  <div class="story-title">Markets Are Pricing Conflict and Tariff Shock as Temporary, Not Structural</div>
+
+  <p>The most important story this morning is not simply that markets recovered, but what they are implicitly saying about the durability of recent shocks. Reuters reported that Wall Street climbed back above pre-Iran-war levels even though oil remained sharply above pre-conflict levels and bond yields were still elevated. Simultaneously, the Trump administration is launching a refund system today for $166 billion in tariffs struck down by the Supreme Court — more than 56,000 importers have already completed steps tied to roughly $127 billion in electronic refunds. Two sources of market anxiety, war inflation and tariff friction, are being repriced from permanent impairment to transitional disturbance.</p>
+
+  <div class="confidence high">HIGH CONFIDENCE</div>
+
+  <div class="sub-label">The Mechanism</div>
+  <p>If investors believed higher oil and tariff instability would lock in sticky inflation, tighter financial conditions, and impaired margins, duration-sensitive growth would not be leading. Instead, tech is leading because the market believes three things: the war's worst energy scenario is less likely than feared; tariff damage is being partially reversed through refunds and legal constraints; and earnings upgrades, especially in AI-linked businesses, are outgrowing the macro drag. Reuters noted that 2026 S&P 500 earnings growth expectations actually improved since the war began. That is the tell.</p>
+
+  <div class="sub-label">Marks's Lens</div>
+  <p>Howard Marks' lens is the right one here because this is a classic second-level thinking setup. First-level thinking says: war raises oil, oil raises inflation, fewer rate cuts hurt tech, so risk assets should struggle. Second-level thinking asks what is already discounted and what is mispriced. Markets had already priced a lot of that fear in late March when the S&P nearly hit correction territory. Now the more important question is whether consensus has become too comfortable with a clean off-ramp. Marks would focus on the asymmetry: if the war truly fades and tariff refunds ease some pressure, current prices are rational; if energy spikes again or tariff instability persists into summer, today's calm leaves little margin of safety.</p>
+
+  <div class="confidence moderate">MODERATE — watching oil and 10Y yields to confirm</div>
+
+  <div class="sub-label">Watchlist Hit</div>
+  <p>NVDA benefits if AI capex remains immune to macro wobble. META and GOOGL benefit if the market keeps rewarding operating leverage plus AI optionality. PLTR benefits if geopolitical uncertainty sustains defense-tech demand. Gold stays relevant because the deeper issue — trust in policy stability and reserve diversification — has not gone away. ADBE is the outlier: it rallies if software catches the AI trade, but is vulnerable if investors narrow back into highest-conviction winners.</p>
+
+  <!-- THE THREAD -->
+  <div class="section-label">The Thread</div>
+  <div class="thread-box">
+    <p>The thread connecting today's tape: the market is choosing earnings over macro fear but has not fully erased the macro risk premium. Reuters showed stocks and the dollar largely retracing to pre-war levels while oil and parts of the rates complex still reflected inflation stress. The tariff refund rollout starting today reduces one source of policy friction and reinforces that the most aggressive trade shock was not durable. Add in ASML and TSMC both lifting outlooks on AI demand, and the real synthesis emerges: capital is rotating toward whatever still shows hard demand despite geopolitics.</p>
+    <div class="contradiction">
+      <strong>Contradiction with prior thinking:</strong> Two months ago the cleaner view was that higher oil and fewer Fed cuts would mechanically crush long-duration tech. Instead, AI-linked earnings revisions have overwhelmed that headwind. Same macro headwind, different market response — because the earnings story is now dominant.
+    </div>
+  </div>
+
+  <!-- ALSO MOVING -->
+  <div class="section-label">Also Moving</div>
+
+  <div class="also-item">
+    <div class="also-title">ASML and TSMC Confirm the AI Spending Boom Is Still Real</div>
+    <p>Reuters reported both companies lifted their 2026 outlooks — TSMC raising revenue guidance and stepping up capex while ASML increased its revenue forecast. The sharp takeaway: the AI buildout is still being funded at the infrastructure layer despite growing investor pressure on hyperscalers to prove returns. If the picks-and-shovels companies still see hard orders, NVDA's demand environment remains fundamentally supported. The risk is not demand collapsing tomorrow — it is the market eventually demanding proof that hyperscaler spending converts into durable monetization rather than perpetual capacity races.</p>
+    <div class="confidence high" style="margin-top:10px;">HIGH CONFIDENCE</div>
+  </div>
+
+  <div class="also-item">
+    <div class="also-title">IMF Downgrade Did Not Break the Market's Risk Appetite</div>
+    <p>The IMF cut its global growth outlook to 3.1% and warned a worsening war scenario could push world growth toward 2.0%. Normally that downgrade paired with an energy shock would hit cyclicals and growth multiples together. Instead, markets treated the IMF baseline as manageable and focused on the fact that the fund did not radically rewrite the 2027 trajectory. Markets are using the IMF downside case as a tail risk reference point, not the base case. That keeps the burden of proof on bears: they need renewed oil acceleration, not just slower growth headlines.</p>
+    <div class="confidence moderate" style="margin-top:10px;">MODERATE — watching whether IMF-style downside shows up in forward earnings revisions</div>
+  </div>
+
+  <!-- ON THE RADAR -->
+  <div class="section-label">On the Radar</div>
+  <ul class="radar-list">
+    <li><strong>Oil's next move:</strong> If WTI keeps falling from the recent spike, equity markets feel validated that the inflation shock was transitory.</li>
+    <li><strong>Treasury yields:</strong> A renewed climb in the 10-year despite softer oil would signal a shift from war inflation to fiscal and term-premium anxiety.</li>
+    <li><strong>Tariff refund execution:</strong> Smooth processing would support the "policy shock is easing" narrative; delays or litigation surprises would reopen the trade-risk channel.</li>
+  </ul>
+
+  <!-- NEXT 24-72 -->
+  <div class="section-label">Next 24–72 Hours</div>
+  <div class="next-item">
+    <div class="next-date">Today, April 20</div>
+    <div class="next-text">U.S. tariff refund system goes live — turns a legal ruling into actual cash-flow relief for importers and tests whether policy uncertainty is really declining.</div>
+  </div>
+  <div class="next-item">
+    <div class="next-date">Through April 22</div>
+    <div class="next-text">IMF-World Bank spring meetings continue shaping the macro narrative around growth, inflation, and whether energy shock risks are fading or merely paused.</div>
+  </div>
+
+  <!-- IF YOU READ ONE THING -->
+  <div class="section-label">If You Read One Thing</div>
+  <div class="read-rec">
+    Read <strong>Reuters — "Back to square one? Markets bet Iran war is over"</strong> — Best explanation of why markets recovered before macro risks truly disappeared.
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Sources: Reuters "Back to square one? Markets bet Iran war is over" · Reuters "US set to launch tariff refund system on April 20"<br>
+    GoldClaw Morning Intelligence | Monday, April 20, 2026 | V2 Format
+  </div>
+
+</div>
+</body>
+</html>
